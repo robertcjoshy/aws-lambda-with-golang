@@ -15,6 +15,7 @@ const (
 	port     = 5432
 	user     = "postgres"
 	password = "daisyjoshy"
+	dbname   = "robert_first"
 )
 
 type MyEvent struct {
@@ -29,7 +30,7 @@ type MyResponse struct {
 func HandleLambdaEvent(event MyEvent) (MyResponse, error) {
 	var err error
 
-	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s "+"password=%s", host, port, user, password)
+	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s dbname=%s "+"password=%s", host, port, user, dbname, password)
 
 	Database, err = gorm.Open(postgres.Open(psqlInfo), &gorm.Config{})
 	if err != nil {
